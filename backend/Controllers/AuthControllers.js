@@ -1,4 +1,5 @@
 const User = require("../models/authModel")
+const profile = require("../models/profileModel")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
@@ -28,6 +29,10 @@ exports.postSignUsers = async(req,res) => {
             password:hashedPassword,
             role:role
         })
+        const userProfile = new profile({
+          user : username
+        })
+        await userProfile.save();
         await newUser.save();
 
         return res.status(201).json({
