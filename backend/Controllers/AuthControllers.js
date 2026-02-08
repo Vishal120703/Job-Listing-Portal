@@ -95,6 +95,3 @@ exports.postLoginUsers = async (req, res) => {
     });
   }
 };
-exports.getUserProfile = async(req,res)=>{
-    res.send("hello i am vishal")
-}
