@@ -29,11 +29,16 @@ exports.postSignUsers = async(req,res) => {
             password:hashedPassword,
             role:role
         })
-        const userProfile = new profile({
-          user : username
-        })
-        await userProfile.save();
+        // const userProfile = new profile({
+        //   user : username
+        // })
+        // await userProfile.save();
         await newUser.save();
+        const userProfile = new profile({
+      user: newUser._id,
+    });
+
+    await userProfile.save();
 
         return res.status(201).json({
             msg:"Signup is working",

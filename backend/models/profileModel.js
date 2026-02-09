@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const profileSchema = new mongoose.Schema({
 
   user: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true,
+    unique: true // one profile per user
   },
 
   profileImage: {
