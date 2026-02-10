@@ -1,0 +1,9 @@
+{
+  "title": "Frontend Developer",
+  "description": "We are looking for a skilled frontend developer with React experience.",
+  "qualification": "B.Tech / BCA / MCA in Computer Science",
+  "responsibilities": "Develop UI components, integrate APIs, optimize performance.",
+  "location": "Noida, India",
+  "salary": 600000,
+  "job_type": "Full-Time"
+}

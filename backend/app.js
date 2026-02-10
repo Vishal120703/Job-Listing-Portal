@@ -14,8 +14,10 @@ app.use(cookieParser());
 
 const AuthRoutes = require("./routes/authRouter");
 const ProfileRouter = require("./routes/profileRouter")
+const JobsRouter = require("./routes/jobsRouter")
 app.use("/api/User", AuthRoutes);
 app.use("/api/User", ProfileRouter);
+app.use("/api/User",JobsRouter);
 
 app.listen(port, () => {
     console.log("the Server is running on port");
