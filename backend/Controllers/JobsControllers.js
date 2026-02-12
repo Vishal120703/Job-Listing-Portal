@@ -6,22 +6,17 @@ exports.getJobs = async (req, res) => {
 
     let filter = {};
 
-    // 🔎 Search by title (case insensitive)
     if (keyword) {
       filter.title = { $regex: keyword, $options: "i" };
     }
 
-    // 📍 Location (partial match)
     if (location) {
       filter.location = { $regex: location, $options: "i" };
     }
 
-    // 💼 Job type
     if (job_type) {
       filter.job_type = { $regex: job_type, $options: "i" };
     }
-
-    // 💰 Salary range
     if (minSalary || maxSalary) {
       filter.salary = {};
       if (minSalary) filter.salary.$gte = Number(minSalary);
