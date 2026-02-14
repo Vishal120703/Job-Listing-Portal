@@ -31,7 +31,7 @@ app.use("/api/User",JobsRouter);
 app.use("/api/User",ApplyRouter);
 
 app.listen(port, () => {
-    console.log("the Server is running on port");
+    console.log(`the Server is running on port:${port}`);
 });
 
 
