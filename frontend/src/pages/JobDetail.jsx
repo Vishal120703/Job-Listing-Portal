@@ -40,10 +40,14 @@ const JobDetail = () => {
 
     try {
       setApplying(true)
-      await applicationAPI.applyToJob(id)
+      setError('')
+      const result = await applicationAPI.applyToJob(id)
       setApplySuccess(true)
+      setError('')
     } catch (err) {
-      setError(err.response?.data?.msg || 'Failed to apply for job')
+      const errorMessage = err.response?.data?.msg || err.response?.data?.message || 'Failed to apply for job'
+      setError(errorMessage)
+      setApplySuccess(false)
     } finally {
       setApplying(false)
     }
@@ -113,10 +117,10 @@ const JobDetail = () => {
       <div className="container">
         <Link to="/jobs" className="back-link">← Back to Jobs</Link>
 
-        {error && <div className="alert alert-error">{error}</div>}
+        {error && !applySuccess && <div className="alert alert-error">{error}</div>}
         {applySuccess && (
           <div className="alert alert-success">
-            Application submitted successfully!
+            ✅ Application submitted successfully! You will be contacted by the employer soon.
           </div>
         )}
 
@@ -139,7 +143,7 @@ const JobDetail = () => {
                   Delete Job
                 </button>
               </div>
-            ) : user && user.role === 'applicant' ? (
+            ) : user ? (
               <button
                 onClick={handleApply}
                 className="btn btn-primary"
@@ -147,7 +151,11 @@ const JobDetail = () => {
               >
                 {applying ? 'Applying...' : applySuccess ? 'Applied!' : 'Apply Now'}
               </button>
-            ) : null}
+            ) : (
+              <Link to="/login" className="btn btn-primary">
+                Login to Apply
+              </Link>
+            )}
           </div>
 
           <div className="job-detail-content">
@@ -182,4 +190,5 @@ const JobDetail = () => {
 }
 
 export default JobDetail
+
 
